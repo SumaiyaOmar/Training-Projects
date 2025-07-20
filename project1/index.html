@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to bottom right, #69ddec, #ffffff);
+    }
+
+    #map {
+        position: absolute;
+        top: 70px;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        border: 4px solid #4b8900;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        position: absolute;
+        top: 15px;
+        left: 20px;
+        margin: 0;
+        font-size: 24px;
+        color: #012620;
+        text-shadow: 1px 1px 2px #ccc;
+    }
+
+     #search-container {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        z-index: 1000;
+    }
+
+    #searchBox {
+        padding: 8px;
+        font-size: 14px;
+        width: 200px;
+        border: 1px solid #aaa;
+        border-radius: 4px;
+    }
+
+    #search-container button {
+        padding: 8px 12px;
+        font-size: 14px;
+        background-color: #00897b;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        margin-left: 4px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+    <div id="header">
+    <h1>Saudi Vision 2023 Projects Map</h1>
+    <div id="search-container"> <input type="text" id="searchBox" placeholder="Search a city....."> <button onclick="searchCity()">Search</button>
+    </div>
+    </div>
+    <div id="map"></div>
+    <script> 
+        var map = L.map('map').setView([24.7136, 46.6753], 13);
+        L.tileLayer('https://api.maptiler.com/maps/bright-v2/{z}/{x}/{y}.png?key=nLb4i9stozKOvp75FrH0',{
+            attribution: 'OpenStreetMap contributers'
+        }).addTo(map);
+        var riyadhMarker = L.marker([24.7136, 46.6753]).addTo(map)
+        riyadhMarker.bindPopup('<b>Riyadh</b><br> -King Salman Park<br> - Expo 2030 Site<br> - New Murabba (Mukaab)<br> - Sports Boulevard<br> - Mohammed Bin Salman Nonprofit City<br> - Riyadh Metro<br> - King Abdullah Gardens<br> - Low Power Research Reactor');
+        riyadhMarker.openPopup();
+
+        var jeddahMarker = L.marker([21.5292, 39.1611]).addTo(map)
+        jeddahMarker.bindPopup('<b>Jeddah</b><br>  - Jeddah Central<br> - Jeddah Economic City<br> - Jeddah Tower');
+        jeddahMarker.openPopup();
+
+        var tabukMarker = L.marker([28.3835, 36.5662]).addTo(map)
+        tabukMarker.bindPopup('<b>Tabuk</b><br>  - NEOM (The Line, Trojena)<br> - Red Sea Global (The Red Sea Project, Amaala)<br> - Solar PV Manufacturing Plant');
+        tabukMarker.openPopup();
+
+        var meccaMarker = L.marker([21.4241, 39.8173]).addTo(map);
+        meccaMarker.bindPopup(`<b>Mecca</b><br> - Masar Destination`);
+        meccaMarker.openPopup();
+
+        var medinaMarker = L.marker([24.4674, 39.6024]).addTo(map);
+        medinaMarker.bindPopup(`<b>Medina</b><br> - Rua Al Madinah (Islamic Civilization Village)`);
+        medinaMarker.openPopup();
+
+        var diriyahMarker = L.marker([24.7480, 46.5364]).addTo(map);
+        diriyahMarker.bindPopup(`<b>Diriyah</b><br> - Diriyah Gate`);
+        diriyahMarker.openPopup();
+
+        var alulaMarker = L.marker([26.6031, 37.9295]).addTo(map);
+        alulaMarker.bindPopup(`<b>Al-Ula</b><br> - Al-Ula Vision`);
+        alulaMarker.openPopup();
+
+        var asirMarker = L.marker([19.0969, 42.8638]).addTo(map);
+        asirMarker.bindPopup('<b>Asir</b><br> - Soudah Peaks');
+        asirMarker.openPopup();
+
+        var dammamMarker = L.marker([26.4207, 50.0888]).addTo(map);
+        dammamMarker.bindPopup(`<b>Dammam</b><br> - King Salman Energy Park`);
+        dammamMarker.openPopup();
+
+        var alkhafjiMarker = L.marker([28.4257, 48.4887]).addTo(map);
+        alkhafjiMarker.bindPopup(`<b>Al Khafji</b><br> - Al Khafji Desalination Plant`);
+        dammamMarker.openPopup();
+
+        var rabighMarker = L.marker([22.7993, 39.0332]).addTo(map);
+        rabighMarker.bindPopup(`<b>Rabigh</b><br> - Rabigh Desalination Plant`);
+        rabighMarker.openPopup();
+
+        var sakakaMarker = L.marker([29.9660, 40.2194]).addTo(map);
+        sakakaMarker.bindPopup(`<b>Sakaka</b><br> - Sakaka Solar Power Plant`);
+        sakakaMarker.openPopup();
+
+        var aljoufMarker = L.marker([29.8874, 39.3206]).addTo(map);
+        aljoufMarker.bindPopup(`<b>Al Jouf</b><br> - Dumat Al Jandal Wind Farm`);
+        aljoufMarker.openPopup();
+
+        var gulfMarker = L.marker([26.7505, 51.6834]).addTo(map);
+        gulfMarker.bindPopup(`<b>Persian Gulf</b><br> - The Rig`);
+        gulfMarker.openPopup();
+        
+        const cityToMarker = { 
+            "riyadh": riyadhMarker,
+            "jeddah": jeddahMarker,
+            "tabuk": tabukMarker,
+            "mecca": meccaMarker,
+            "medina": medinaMarker,
+            "diriyah": diriyahMarker,
+            "al ula": alulaMarker,
+            "asir": asirMarker,
+            "dammam": dammamMarker,
+            "al khafji": alkhafjiMarker,
+            "rabigh": rabighMarker,
+            "sakaka" : sakakaMarker,
+            "al jouf": aljoufMarker,
+            "persian-gulf": gulfMarker
+        };
+
+        function searchCity(){
+            const input = document.getElementById("searchBox").value.toLowerCase().trim();
+            const marker = cityToMarker[input];
+
+            if (marker){
+                marker.openPopup();
+                map.setView(marker.getLatLng(),10);
+            } else{
+                alert("City not found. Please check your spelling");
+            }
+        }
+    </script>
+</body>
+</html>
